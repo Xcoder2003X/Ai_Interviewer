@@ -37,15 +37,11 @@ export async function POST(request : Request) {
       greetingMessage = "Great! Let's continue with the next question.";
     }
     
-    const response = {
-      result: greetingMessage,
-      // You can include additional metadata for your workflow
-      metadata: {
-        interviewStarted: isNewConversation,
-        totalQuestions: INTERVIEW_QUESTIONS.length,
-        currentQuestionIndex: 0
-      }
-    };
+   const response = {
+  result: greetingMessage,
+  nextAction: "start_workflow", // Indique à l'assistant de démarrer le workflow
+  workflowName: "pfe_interviewer_workflow"
+};
     
     console.log('Sending response:', response);
     return NextResponse.json(response);
